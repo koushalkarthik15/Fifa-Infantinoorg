@@ -22,7 +22,7 @@ async def test_report_incident(async_client: AsyncClient, monkeypatch):
     assert data["category"] == "Medical"
     assert data["priority"] == "High"
     assert "Dispatch EMT" in data["suggested_actions"]
-    assert "Sarah" in data["assigned_volunteer"]
+    assert "Maria" in data["assigned_volunteer"]
 
 
 @pytest.mark.asyncio

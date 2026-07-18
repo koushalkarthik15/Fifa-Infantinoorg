@@ -2,12 +2,14 @@ import * as React from "react"
 import { Sparkles } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface AIRecommendationCardProps {
   title: string
   recommendation: string
   actionLabel?: string
   onAction?: () => void
+  actionHref?: string
   confidenceLabel?: string
 }
 
@@ -16,6 +18,7 @@ export function AIRecommendationCard({
   recommendation,
   actionLabel,
   onAction,
+  actionHref,
   confidenceLabel,
 }: AIRecommendationCardProps) {
   return (
@@ -38,9 +41,17 @@ export function AIRecommendationCard({
       </CardContent>
       {actionLabel && (
         <CardFooter className="pt-0">
-          <Button variant="primary" size="sm" onClick={onAction} className="w-full sm:w-auto mt-2">
-            {actionLabel}
-          </Button>
+          {actionHref ? (
+            <Link href={actionHref} className="w-full sm:w-auto mt-2">
+              <Button variant="primary" size="sm" className="w-full">
+                {actionLabel}
+              </Button>
+            </Link>
+          ) : (
+            <Button variant="primary" size="sm" onClick={onAction} className="w-full sm:w-auto mt-2">
+              {actionLabel}
+            </Button>
+          )}
         </CardFooter>
       )}
     </Card>

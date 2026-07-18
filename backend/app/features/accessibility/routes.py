@@ -56,11 +56,10 @@ async def analyze_vision(
     file: UploadFile = File(...),
     service: AccessibilityService = Depends(get_accessibility_service),
 ) -> APIResponse[VisionResponse]:
-    # Validate image format and size
-    if not file.content_type or not file.content_type.startswith("image/"):
-        raise HTTPException(
-            status_code=400, detail="Invalid file type. Only images are supported."
-        )
+    raise HTTPException(
+        status_code=503,
+        detail="Vision Assistance is currently upcoming and unavailable.",
+    )
 
     image_bytes = await file.read()
     if len(image_bytes) > 5 * 1024 * 1024:  # 5MB limit

@@ -12,10 +12,10 @@ export default function ProfilePage() {
       <SectionContainer className="pt-6 pb-8 bg-neutral-0 border-b border-neutral-200">
         <ContentWrapper size="md" className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
           <div className="h-24 w-24 rounded-full bg-night-100 flex items-center justify-center text-night-700 text-h2 font-display overflow-hidden">
-            <span aria-hidden="true">JD</span>
+            <span aria-hidden="true">GI</span>
           </div>
           <div className="flex-1 space-y-2">
-            <h1 className="text-display-lg text-night-900 font-bold">Jamie Doe</h1>
+            <h1 className="text-display-lg text-night-900 font-bold">Gianni Infantino</h1>
             <p className="text-body-md text-neutral-600">Global Supporter • Fan ID: #104294</p>
             <div className="flex flex-wrap justify-center sm:justify-start gap-2 pt-2">
               <Badge variant="gold">Premium Fan</Badge>
@@ -39,15 +39,15 @@ export default function ProfilePage() {
                 <div className="divide-y divide-neutral-100">
                   <div className="p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-semibold text-night-900">Group Stage: Match 12</p>
-                      <p className="text-body-sm text-neutral-600">Stadium 1 • Tue, Jun 16 • Gate C</p>
+                      <p className="font-semibold text-night-900">World Cup Final</p>
+                      <p className="text-body-sm text-neutral-600">MetLife Stadium • Sun, Jul 19 • Gate A</p>
                     </div>
                     <Badge variant="success">Upcoming</Badge>
                   </div>
                   <div className="p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-semibold text-night-900">Quarter Final</p>
-                      <p className="text-body-sm text-neutral-600">Stadium 3 • Sat, Jul 4 • Gate A</p>
+                      <p className="font-semibold text-night-900">Post-Match Celebration</p>
+                      <p className="text-body-sm text-neutral-600">MetLife Plaza • Sun, Jul 19 • Fan Zone</p>
                     </div>
                     <Badge variant="success">Upcoming</Badge>
                   </div>
@@ -64,10 +64,10 @@ export default function ProfilePage() {
             </h2>
             <div className="space-y-4">
               <RouteCard
-                destination="Stadium 1 (Gate C)"
+                destination="MetLife Stadium (Gate A)"
                 eta="25 min"
                 distance="4.2 km"
-                transportMode={<><TrainFront className="h-4 w-4" /> Transit Line Blue</>}
+                transportMode={<><TrainFront className="h-4 w-4" /> NJ Transit Meadowlands</>}
                 isAccessible={true}
                 isSustainable={true}
                 status="available"

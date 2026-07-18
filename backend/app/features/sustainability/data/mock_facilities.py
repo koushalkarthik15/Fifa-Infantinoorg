@@ -1,14 +1,14 @@
 import functools
 
 MOCK_WATER_STATIONS = [
-    "Water Refill Station - Gate A Concourse",
+    "Water Refill Station - MetLife Gate A Concourse",
     "Water Refill Station - Section 102",
     "Water Refill Station - VIP Lounge Entrance",
     "Water Refill Station - Fan Zone East",
 ]
 
 MOCK_RECYCLING_BINS = [
-    "Eco Recycling Hub - Main Plaza",
+    "Eco Recycling Hub - MetLife North Plaza",
     "Recycling Point - Section 105",
     "Recycling Point - Gate C Food Court",
     "Compost & Recycling - Fan Zone West",

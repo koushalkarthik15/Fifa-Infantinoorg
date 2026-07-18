@@ -2,21 +2,21 @@ import { apiClient, APIResponse } from '@/services/api/client';
 
 export interface RouteSegment {
   instruction: string;
-  distanceMeters: number;
-  durationSeconds: number;
+  distance_meters: number;
+  duration_seconds: number;
 }
 
 export interface VenueNavigationRequest {
   origin: string;
-  destinationCategory?: string;
-  destinationName?: string;
+  destination_category?: string;
+  destination_name?: string;
 }
 
 export interface VenueNavigationResponse {
   origin: string;
   destination: string;
   segments: RouteSegment[];
-  totalDurationSeconds: number;
+  total_duration_seconds: number;
 }
 
 export interface TransportationRequest {
@@ -28,7 +28,7 @@ export interface TransportationRequest {
 export interface TransportationResponse {
   origin: string;
   destination: string;
-  recommendedMode: string;
+  recommended_mode: string;
   explanation: string;
 }
 

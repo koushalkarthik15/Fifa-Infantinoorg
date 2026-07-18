@@ -17,14 +17,18 @@ export default function Home() {
             subtitle="Explore host cities, find the best routes, and experience the tournament like never before."
             gradient="stadium-lights"
             primaryAction={
-              <Button variant="primary" size="lg" className="w-full">
-                View My Tickets
-              </Button>
+              <Link href="/profile" className="w-full block">
+                <Button variant="primary" size="lg" className="w-full">
+                  Profile
+                </Button>
+              </Link>
             }
             secondaryAction={
-              <Button variant="secondary" size="lg" className="w-full bg-neutral-0/10 text-neutral-0 hover:bg-neutral-0/20 border-none">
-                Explore Host Cities
-              </Button>
+              <Link href="/settings" className="w-full block">
+                <Button variant="secondary" size="lg" className="w-full bg-neutral-0/10 text-neutral-0 hover:bg-neutral-0/20 border-none">
+                  Settings
+                </Button>
+              </Link>
             }
           />
         </ContentWrapper>
@@ -38,12 +42,12 @@ export default function Home() {
               <div className="flex items-center gap-6 overflow-x-auto w-full no-scrollbar whitespace-nowrap">
                 <div className="flex items-center gap-2 text-body-sm font-medium text-neutral-600">
                   <Calendar className="h-4 w-4 text-neutral-400" />
-                  Match Day 12
+                  World Cup Final
                 </div>
                 <div className="w-px h-4 bg-neutral-200 shrink-0" />
                 <div className="flex items-center gap-2 text-body-sm font-medium text-neutral-600">
                   <MapPin className="h-4 w-4 text-neutral-400" />
-                  Stadium 1, NY/NJ
+                  MetLife Stadium, NJ
                 </div>
                 <div className="w-px h-4 bg-neutral-200 shrink-0" />
                 <div className="flex items-center gap-2 text-body-sm font-medium text-neutral-600">
@@ -60,8 +64,9 @@ export default function Home() {
         <ContentWrapper size="lg">
           <AIRecommendationCard
             title="Contextual Insight"
-            recommendation="Your selected match at Stadium 1 starts in 3 hours. Transit lines are currently running smoothly. We suggest departing in 45 minutes to avoid peak crowds."
+            recommendation="The World Cup Final at MetLife Stadium starts in 3 hours. Transit lines are showing moderate congestion. We suggest taking the NJ Transit Meadowlands Rail Service in 45 minutes to avoid peak crowds."
             actionLabel="View Route"
+            actionHref="/navigation"
           />
         </ContentWrapper>
       </SectionContainer>

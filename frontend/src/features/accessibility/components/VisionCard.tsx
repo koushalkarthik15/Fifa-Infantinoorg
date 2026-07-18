@@ -7,6 +7,7 @@ import { accessibilityApi, VisionResponse } from '../services/accessibilityApi';
 import { Upload, AlertTriangle, Eye, CheckCircle2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/loading';
 import { EmptyState } from '@/components/ui/empty-state';
+import { Badge } from '@/components/ui/badge';
 
 export const VisionCard: React.FC = () => {
   const [result, setResult] = useState<VisionResponse | null>(null);
@@ -34,9 +35,12 @@ export const VisionCard: React.FC = () => {
   return (
     <Card variant="standard" className="border-t-4 border-t-purple-600">
       <CardHeader>
-        <CardTitle className="text-h4 text-night-900 flex items-center gap-2">
-          <Eye className="h-5 w-5 text-purple-600" />
-          Vision Assistance
+        <CardTitle className="text-h4 text-night-900 flex justify-between items-center w-full">
+          <div className="flex items-center gap-2">
+            <Eye className="h-5 w-5 text-purple-600" />
+            Vision Assistance
+          </div>
+          <Badge variant="neutral">Upcoming</Badge>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -53,6 +57,7 @@ export const VisionCard: React.FC = () => {
           className="hidden" 
           ref={fileInputRef} 
           onChange={handleFileChange} 
+          disabled={true}
           aria-label="Upload an image for analysis"
         />
 
@@ -109,13 +114,13 @@ export const VisionCard: React.FC = () => {
       </CardContent>
       <CardFooter>
         <Button 
-          onClick={() => fileInputRef.current?.click()} 
-          disabled={loading} 
+          onClick={() => {}} 
+          disabled={true} 
           variant="secondary" 
           className="w-full text-purple-700 hover:bg-purple-50"
         >
           <Upload className="w-4 h-4 mr-2" />
-          {loading ? 'Analyzing...' : 'Upload Image'}
+          Coming Soon
         </Button>
       </CardFooter>
     </Card>

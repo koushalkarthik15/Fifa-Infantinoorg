@@ -4,6 +4,7 @@ import * as React from "react"
 import { PageContainer, SectionContainer, ContentWrapper } from "@/components/layout/layout-primitives"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Globe, Bell, Eye, Shield, Info, Moon } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 function SettingToggle({ label, defaultChecked = false, description }: { label: string, defaultChecked?: boolean, description?: string }) {
   const [checked, setChecked] = React.useState(defaultChecked)
@@ -64,39 +65,42 @@ export default function SettingsPage() {
           </div>
 
           <Card variant="standard">
-            <CardHeader className="pb-3 border-b border-neutral-100">
+            <CardHeader className="pb-3 border-b border-neutral-100 flex flex-row items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-h4">
                 <Globe className="h-5 w-5 text-neutral-600" />
                 Language & Region
               </CardTitle>
+              <Badge variant="neutral">Coming Soon</Badge>
             </CardHeader>
-            <CardContent className="pt-4 divide-y divide-neutral-100">
+            <CardContent className="pt-4 divide-y divide-neutral-100 pointer-events-none bg-neutral-50/30">
               <SettingSelect label="Language" options={["English", "Spanish", "French", "Arabic"]} defaultValue="English" />
               <SettingSelect label="Time Zone" options={["Host City Time", "My Device Time"]} defaultValue="Host City Time" />
             </CardContent>
           </Card>
 
           <Card variant="standard">
-            <CardHeader className="pb-3 border-b border-neutral-100">
+            <CardHeader className="pb-3 border-b border-neutral-100 flex flex-row items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-h4">
                 <Moon className="h-5 w-5 text-neutral-600" />
                 Appearance
               </CardTitle>
+              <Badge variant="neutral">Coming Soon</Badge>
             </CardHeader>
-            <CardContent className="pt-4 divide-y divide-neutral-100">
+            <CardContent className="pt-4 divide-y divide-neutral-100 pointer-events-none bg-neutral-50/30">
               <SettingSelect label="Theme" options={["System Default", "Light", "Dark"]} defaultValue="System Default" />
               <p className="text-caption text-neutral-600 pt-2">(Note: Theme preference is saved locally. Dark mode support is coming soon.)</p>
             </CardContent>
           </Card>
 
           <Card variant="standard">
-            <CardHeader className="pb-3 border-b border-neutral-100">
+            <CardHeader className="pb-3 border-b border-neutral-100 flex flex-row items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-h4">
                 <Eye className="h-5 w-5 text-neutral-600" />
                 Accessibility
               </CardTitle>
+              <Badge variant="neutral">Coming Soon</Badge>
             </CardHeader>
-            <CardContent className="pt-4 divide-y divide-neutral-100">
+            <CardContent className="pt-4 divide-y divide-neutral-100 pointer-events-none bg-neutral-50/30">
               <SettingToggle label="High Contrast Map" description="Enhance map readability" defaultChecked={false} />
               <SettingToggle label="Reduce Motion" description="Minimize animations across the app" defaultChecked={false} />
               <SettingToggle label="Screen Reader Priority" description="Optimize layout for voiceover" defaultChecked={false} />
@@ -104,13 +108,14 @@ export default function SettingsPage() {
           </Card>
 
           <Card variant="standard">
-            <CardHeader className="pb-3 border-b border-neutral-100">
+            <CardHeader className="pb-3 border-b border-neutral-100 flex flex-row items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-h4">
                 <Bell className="h-5 w-5 text-neutral-600" />
                 Notifications
               </CardTitle>
+              <Badge variant="neutral">Coming Soon</Badge>
             </CardHeader>
-            <CardContent className="pt-4 divide-y divide-neutral-100">
+            <CardContent className="pt-4 divide-y divide-neutral-100 pointer-events-none bg-neutral-50/30">
               <SettingToggle label="Route Updates" description="Live delays and alternative routes" defaultChecked={true} />
               <SettingToggle label="Crowd Alerts" description="Warnings for heavily congested areas" defaultChecked={true} />
               <SettingToggle label="Volunteer Shift Reminders" description="For active volunteers only" defaultChecked={false} />
