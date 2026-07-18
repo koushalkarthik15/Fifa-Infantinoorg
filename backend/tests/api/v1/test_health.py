@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 client = TestClient(app)
 
+
 def test_health_liveness():
     response = client.get("/api/v1/health")
     assert response.status_code == 200
@@ -13,6 +14,7 @@ def test_health_liveness():
     assert data["version"] == "0.1.0"
     # Liveness should not contain services/database details
     assert "database" not in data
+
 
 @patch("app.api.v1.router.get_ai_provider")
 @patch("app.api.v1.router.get_maps_provider")

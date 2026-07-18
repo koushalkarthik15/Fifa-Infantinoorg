@@ -2,6 +2,7 @@ from sqlmodel import Session, select
 from typing import List, Optional
 from app.features.navigation.domain.models import VenueLocation
 
+
 class NavigationRepository:
     def __init__(self, session: Session):
         self.session = session

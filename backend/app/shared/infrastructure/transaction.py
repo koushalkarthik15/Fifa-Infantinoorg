@@ -5,12 +5,13 @@ from app.shared.logging.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 @contextmanager
 def transactional(session: Session) -> Generator[Session, None, None]:
     """
-    Explicit transaction boundary manager for executing multi-repository or 
+    Explicit transaction boundary manager for executing multi-repository or
     multi-step database operations atomically.
-    
+
     Yields the current session.
     Commits on successful block exit.
     Rolls back gracefully on ANY domain or Python exception.

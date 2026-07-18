@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from app.shared.middleware.security import SecurityHeadersMiddleware
 from app.shared.logging.middleware import RequestLoggerMiddleware
 
+
 def test_security_headers_middleware():
     app = FastAPI()
     app.add_middleware(SecurityHeadersMiddleware)
@@ -18,6 +19,7 @@ def test_security_headers_middleware():
     assert response.headers.get("X-Content-Type-Options") == "nosniff"
     assert response.headers.get("X-Frame-Options") == "DENY"
     assert response.headers.get("Referrer-Policy") == "strict-origin-when-cross-origin"
+
 
 def test_request_logger_middleware_injects_request_id():
     app = FastAPI()

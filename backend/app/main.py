@@ -22,22 +22,24 @@ from app.shared.dependencies.providers import initialize_providers, close_provid
 setup_logging()
 logger = get_logger(__name__)
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
     logger.info("Application starting up")
     init_db()
     logger.info("Database initialized successfully")
-    
+
     initialize_providers()
     logger.info("External service providers initialized")
-    
+
     yield
-    
+
     # Shutdown
     logger.info("Application shutting down")
     close_providers()
     logger.info("External service providers closed")
+
 
 tags_metadata = [
     {
@@ -71,7 +73,7 @@ app = FastAPI(
     version="0.1.0",
     description="InfantinoOrg Backend Platform",
     openapi_tags=tags_metadata,
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 # CORS Middleware Configuration
@@ -81,7 +83,11 @@ if not settings.CORS_ORIGINS:
 # In production, we restrict to explicitly defined origins.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[str(origin) for origin in settings.CORS_ORIGINS] if settings.CORS_ORIGINS else [],
+    allow_origins=(
+        [str(origin) for origin in settings.CORS_ORIGINS]
+        if settings.CORS_ORIGINS
+        else []
+    ),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -102,8 +108,13 @@ if settings.ENABLE_REQUEST_LOGGING:
 # Routers
 app.include_router(api_v1_router)
 
+
 # Infrastructure unversioned health alias
-@app.get("/health", tags=["Infrastructure"], response_model=health_check.__annotations__.get("return"))
+@app.get(
+    "/health",
+    tags=["Infrastructure"],
+    response_model=health_check.__annotations__.get("return"),
+)
 async def unversioned_health_check():
     """Alias to the versioned health check for infrastructure compatibility."""
     return await health_check()

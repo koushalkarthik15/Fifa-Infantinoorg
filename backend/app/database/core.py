@@ -12,8 +12,9 @@ if settings.DATABASE_URL.startswith("sqlite"):
 engine = create_engine(
     settings.DATABASE_URL,
     connect_args=connect_args,
-    pool_pre_ping=True  # Ensure connections are tested before use
+    pool_pre_ping=True,  # Ensure connections are tested before use
 )
+
 
 def init_db() -> None:
     """
@@ -21,6 +22,7 @@ def init_db() -> None:
     Idempotent operation (will not recreate existing tables).
     """
     SQLModel.metadata.create_all(engine)
+
 
 def get_session() -> Generator[Session, None, None]:
     """

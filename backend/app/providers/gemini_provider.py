@@ -9,6 +9,7 @@ from app.shared.api.exceptions import ExternalServiceError, ExternalServiceTimeo
 
 logger = get_logger(__name__)
 
+
 class GeminiProvider(AIProvider):
     def __init__(self):
         self.client: Optional[genai.Client] = None
@@ -34,8 +35,8 @@ class GeminiProvider(AIProvider):
             return "disabled"
         if not self.client:
             return "error"
-        
-        # A lightweight check: Since the SDK doesn't have a direct "ping", 
+
+        # A lightweight check: Since the SDK doesn't have a direct "ping",
         # checking if the client exists and is enabled serves as readiness.
         # We avoid expensive generation calls.
         return "connected"
@@ -45,11 +46,11 @@ class GeminiProvider(AIProvider):
         logger.info("Gemini provider closed.")
 
     def generate_content(
-        self, 
-        prompt: str, 
-        image_bytes: Optional[bytes] = None, 
-        mime_type: Optional[str] = None, 
-        **kwargs: Any
+        self,
+        prompt: str,
+        image_bytes: Optional[bytes] = None,
+        mime_type: Optional[str] = None,
+        **kwargs: Any,
     ) -> str:
         if not self.client:
             raise ExternalServiceError("Gemini provider is not initialized.")
@@ -72,17 +73,19 @@ class GeminiProvider(AIProvider):
                     contents.append(prompt)
 
                     response = self.client.models.generate_content(
-                        model=model_name,
-                        contents=contents
+                        model=model_name, contents=contents
                     )
                     return response.text or ""
                 except APIError as e:
                     # Retry on 503 UNAVAILABLE errors (high demand)
                     if "503" in str(e) or "UNAVAILABLE" in str(e):
                         attempt += 1
-                        logger.warning(f"Gemini 503 error on {model_name}, retry {attempt}/{max_attempts}: {e}")
+                        logger.warning(
+                            f"Gemini 503 error on {model_name}, retry {attempt}/{max_attempts}: {e}"
+                        )
                         if attempt < max_attempts:
                             import time
+
                             time.sleep(delay_seconds)
                             continue
                     # Non‑retryable Gemini error – move to next model
@@ -93,7 +96,11 @@ class GeminiProvider(AIProvider):
                     if "timeout" in str(e).lower():
                         raise ExternalServiceTimeoutError("Gemini request timed out.")
                     logger.error(f"Unexpected error in Gemini generation: {str(e)}")
-                    raise ExternalServiceError("Unexpected error communicating with Gemini.")
+                    raise ExternalServiceError(
+                        "Unexpected error communicating with Gemini."
+                    )
             # End while attempts for this model – try next model
         # If all models exhausted
-        raise ExternalServiceError("Failed to generate content via Gemini after all fallback models.")
+        raise ExternalServiceError(
+            "Failed to generate content via Gemini after all fallback models."
+        )

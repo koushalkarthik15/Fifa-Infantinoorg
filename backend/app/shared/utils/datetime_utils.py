@@ -1,11 +1,13 @@
 from datetime import datetime, timezone
 
+
 def utcnow() -> datetime:
     """
     Returns the current timezone-aware UTC datetime.
     Ensures no time-drift across different environment regions.
     """
     return datetime.now(timezone.utc)
+
 
 def format_iso8601(dt: datetime) -> str:
     """
@@ -14,4 +16,4 @@ def format_iso8601(dt: datetime) -> str:
     if dt.tzinfo is None:
         # If naive, assume UTC
         dt = dt.replace(tzinfo=timezone.utc)
-    return dt.isoformat().replace('+00:00', 'Z')
+    return dt.isoformat().replace("+00:00", "Z")

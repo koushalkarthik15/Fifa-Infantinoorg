@@ -3,6 +3,7 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def test_openapi_schema_generation():
     response = client.get("/openapi.json")
     assert response.status_code == 200

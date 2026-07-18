@@ -13,6 +13,7 @@ engine = create_engine(
     pool_pre_ping=True,
 )
 
+
 @pytest.fixture(name="session")
 def session_fixture():
     SQLModel.metadata.create_all(engine)
@@ -21,15 +22,16 @@ def session_fixture():
     SQLModel.metadata.drop_all(engine)
 
 
-
 @pytest.fixture(name="client")
 def client_fixture(session: Session):
     def get_session_override():
         return session
+
     app.dependency_overrides[get_session] = get_session_override
     with TestClient(app) as client:
         yield client
     app.dependency_overrides.clear()
+
 
 @pytest_asyncio.fixture
 async def async_client(client):

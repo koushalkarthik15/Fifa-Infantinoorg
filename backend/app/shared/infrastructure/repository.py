@@ -4,12 +4,13 @@ from app.shared.api.exceptions import NotFoundError
 
 ModelType = TypeVar("ModelType", bound=SQLModel)
 
+
 class BaseRepository(Generic[ModelType]):
     """
     Generic Base Repository to encapsulate all common CRUD operations.
     Enforces strong typing and consistent database interaction.
     """
-    
+
     def __init__(self, model: Type[ModelType], session: Session):
         self.model = model
         self.session = session
@@ -22,7 +23,9 @@ class BaseRepository(Generic[ModelType]):
         """Fetch a single record by its primary key, raising NotFoundError if not found."""
         obj = self.get(id)
         if not obj:
-            raise NotFoundError(message=f"{self.model.__name__} with ID {id} not found.")
+            raise NotFoundError(
+                message=f"{self.model.__name__} with ID {id} not found."
+            )
         return obj
 
     def list(self, skip: int = 0, limit: int = 100) -> List[ModelType]:
@@ -41,10 +44,14 @@ class BaseRepository(Generic[ModelType]):
 
     def update(self, db_obj: ModelType, obj_in: SQLModel | dict[str, Any]) -> ModelType:
         """Update an existing record."""
-        update_data = obj_in if isinstance(obj_in, dict) else obj_in.model_dump(exclude_unset=True)
+        update_data = (
+            obj_in
+            if isinstance(obj_in, dict)
+            else obj_in.model_dump(exclude_unset=True)
+        )
         for field, value in update_data.items():
             setattr(db_obj, field, value)
-        
+
         self.session.add(db_obj)
         self.session.commit()
         self.session.refresh(db_obj)

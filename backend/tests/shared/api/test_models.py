@@ -6,11 +6,13 @@ from app.shared.api.models import (
     PaginationParams,
 )
 
+
 def test_api_response_serialization():
     response = APIResponse[dict](data={"foo": "bar"}, meta={"time": "now"})
     dump = response.model_dump(by_alias=True)
     assert dump["data"] == {"foo": "bar"}
     assert dump["meta"] == {"time": "now"}
+
 
 def test_api_error_serialization():
     error = APIError(code="ERR", message="Bad", details={"id": 1})
@@ -18,6 +20,7 @@ def test_api_error_serialization():
     assert dump["code"] == "ERR"
     assert dump["message"] == "Bad"
     assert dump["details"] == {"id": 1}
+
 
 def test_pagination_params_validation():
     # Valid

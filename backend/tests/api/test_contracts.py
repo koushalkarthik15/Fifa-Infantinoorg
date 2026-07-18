@@ -3,6 +3,7 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def test_api_success_envelope():
     """Validate that successful responses use a standard envelope or follow schema rules."""
     response = client.get("/api/v1/health")
@@ -10,6 +11,7 @@ def test_api_success_envelope():
     data = response.json()
     # While Health may not have full pagination/data envelopes, we check consistency.
     assert isinstance(data, dict)
+
 
 def test_api_error_envelope():
     """Validate that error responses follow the standard error schema."""
@@ -19,6 +21,7 @@ def test_api_error_envelope():
     # The error is returned directly at the top level
     assert "code" in data
     assert "message" in data
+
 
 def test_api_422_validation_envelope():
     """Validate that Pydantic validation errors are correctly formatted."""

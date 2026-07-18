@@ -3,11 +3,9 @@ from app.shared.api.models import PaginatedResponse
 
 T = TypeVar("T")
 
+
 def format_paginated_response(
-    items: List[T],
-    total_count: int,
-    page: int,
-    size: int
+    items: List[T], total_count: int, page: int, size: int
 ) -> PaginatedResponse[T]:
     """
     Safely format raw generic lists into the standard PaginatedResponse envelope.
@@ -21,5 +19,5 @@ def format_paginated_response(
         total_count=total_count,
         page_size=size,
         current_page=page,
-        has_next_page=has_next
+        has_next_page=has_next,
     )

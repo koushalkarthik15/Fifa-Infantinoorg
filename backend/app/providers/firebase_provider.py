@@ -8,6 +8,7 @@ from app.shared.api.exceptions import ExternalServiceError
 
 logger = get_logger(__name__)
 
+
 class BackendFirebaseProvider(FirebaseProvider):
     def __init__(self):
         self.app: Optional[firebase_admin.App] = None
@@ -23,20 +24,22 @@ class BackendFirebaseProvider(FirebaseProvider):
             logger.info("Firebase app was already initialized.")
             return
         except ValueError:
-            pass # Not initialized
+            pass  # Not initialized
 
         if not settings.FIREBASE_PROJECT_ID:
             logger.error("ENABLE_FIREBASE is true but FIREBASE_PROJECT_ID is missing.")
             raise ExternalServiceError("Firebase configuration is incomplete.")
 
         try:
-            # For simplicity without service account files in this setup, 
+            # For simplicity without service account files in this setup,
             # we initialize with the default credential strategy which will pick up
             # GOOGLE_APPLICATION_CREDENTIALS automatically if deployed.
             # In a real environment, we might load from a JSON path.
-            self.app = firebase_admin.initialize_app(options={
-                'projectId': settings.FIREBASE_PROJECT_ID,
-            })
+            self.app = firebase_admin.initialize_app(
+                options={
+                    "projectId": settings.FIREBASE_PROJECT_ID,
+                }
+            )
             logger.info("Firebase provider initialized successfully.")
         except Exception:
             logger.exception("Failed to initialize Firebase Admin SDK.")
