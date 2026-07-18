@@ -17,6 +17,7 @@ RUN pip install uv
 
 # Copy requirements and install
 COPY pyproject.toml ./
+RUN mkdir app && touch app/__init__.py
 RUN uv pip install --system .
 
 # Final production stage
