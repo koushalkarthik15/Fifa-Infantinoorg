@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-inter: var(--font-inter);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+  --font-clash-display: var(--font-clash-display);
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-ibm-plex-mono);
+  --font-display: var(--font-clash-display);
+
+  /* Colors: Pitch & Night (Primary) */
+  --color-pitch-100: #E3F5E9;
+  --color-pitch-300: #7FCB9B;
+  --color-pitch-500: #1E8A4C;
+  --color-pitch-600: #166D3C;
+  --color-pitch-800: #0F4A29;
+
+  --color-night-100: #DCE7F2;
+  --color-night-400: #3E6E9E;
+  --color-night-700: #16487A;
+  --color-night-900: #0A2A47;
+
+  /* Colors: Championship Gold */
+  --color-gold-100: #FBF1DA;
+  --color-gold-300: #F0CD86;
+  --color-gold-500: #D8A73D;
+  --color-gold-700: #A87A1F;
+
+  /* Colors: Fan Culture (Secondary) */
+  --color-coral-500: #FF6B4A;
+  --color-violet-500: #7C5CFC;
+  --color-cyan-500: #2FB6C4;
+  --color-sun-500: #F2B33D;
+
+  /* Colors: Concourse Gray (Neutral) */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #F8F9FA;
+  --color-neutral-100: #F1F3F5;
+  --color-neutral-200: #E3E7EB;
+  --color-neutral-300: #CDD3D9;
+  --color-neutral-400: #9AA5B1;
+  --color-neutral-600: #5B6472;
+  --color-neutral-800: #2B323B;
+  --color-neutral-900: #14181D;
+
+  /* Colors: Semantic */
+  --color-semantic-success: var(--color-pitch-500);
+  --color-semantic-warning: var(--color-gold-500);
+  --color-semantic-error: #E5484D;
+  --color-semantic-info: var(--color-cyan-500);
+
+  /* Colors: Crowd Flow */
+  --color-flow-1: #2FA84F;
+  --color-flow-2: #8CC63F;
+  --color-flow-3: #E8C93D;
+  --color-flow-4: #E8863D;
+  --color-flow-5: #D83B3B;
+
+  /* Colors: Accessibility */
+  --color-focus-ring: #2D6CDF;
+  --color-high-contrast-text: #0B0D0F;
+  --color-high-contrast-bg: #FFFFFF;
+  --color-high-contrast-border: #000000;
+
+  /* Colors: AI Companion */
+  --color-ai-violet: #7C5CFC;
+  --color-ai-cyan: #2FB6C4;
+  --color-ai-surface: #F5F3FF;
+  --color-ai-surface-dark: #1C1A33;
+  
+  /* Spacing Scale */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+  --spacing-7: 40px;
+  --spacing-8: 48px;
+  --spacing-9: 64px;
+  --spacing-10: 80px;
+  --spacing-11: 96px;
+  --spacing-12: 128px;
+  
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 960px;
+  --container-lg: 1200px;
+  --container-xl: 1440px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+  
+  /* Shadows / Elevation */
+  --shadow-elevation-1: 0 1px 2px rgba(10,42,71,0.06), 0 1px 1px rgba(10,42,71,0.04);
+  --shadow-elevation-2: 0 4px 12px rgba(10,42,71,0.10);
+  --shadow-elevation-3: 0 8px 24px rgba(10,42,71,0.14);
+  --shadow-elevation-4: 0 16px 40px rgba(10,42,71,0.18);
+  --shadow-elevation-5: 0 24px 64px rgba(10,42,71,0.24);
+
+  /* Layout Constants */
+  --header-height: 72px;
+  --mobile-nav-height: 80px;
+}
+
+@layer base {
+  :root {
+    /* Temporary fallback for Clash Display until local files are provided */
+    --font-clash-display: "Clash Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-800 font-sans antialiased;
+  }
+
+  /* Focus management for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Typography Utilities - Headers */
+  .text-display-xl {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: clamp(1.1, 5vw, 1.05);
+  }
+  
+  .text-display-lg {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: clamp(1.15, 4vw, 1.1);
+  }
+  
+  .text-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 36px);
+    line-height: clamp(1.2, 3.5vw, 1.15);
+  }
+  
+  .text-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: clamp(1.25, 3vw, 1.2);
+  }
+  
+  .text-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(19px, 2.5vw, 22px);
+    line-height: clamp(1.3, 2.5vw, 1.25);
+  }
+  
+  .text-h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: clamp(1.35, 2vw, 1.3);
+  }
+
+  /* Typography Utilities - Body */
+  .text-body-lg {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .text-body-md {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .text-body-sm {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .text-caption {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  
+  .text-overline {
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Glass Effects */
+  .glass-panel {
+    background: rgba(20, 24, 29, 0.08); /* neutral-900 at 8% opacity */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Utilities */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 200ms ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-fade-in {
+    animation: none !important;
+  }
+}

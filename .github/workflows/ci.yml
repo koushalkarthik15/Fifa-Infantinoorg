@@ -1,0 +1,110 @@
+name: InfantinoOrg CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Lint
+        run: npm run lint
+        
+      - name: Type Check
+        run: npx tsc --noEmit
+        
+      - name: Build Next.js
+        run: npm run build
+        
+      # Upload frontend artifact for docker stage
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-standalone
+          path: ./frontend/.next/standalone
+          retention-days: 1
+
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          
+      - name: Cache uv dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('backend/requirements.txt') }}
+          
+      - name: Install uv
+        run: pip install uv
+        
+      - name: Install dependencies
+        run: uv pip install --system -r requirements.txt
+        
+      - name: Lint with Ruff
+        run: ruff check .
+        
+      - name: Check formatting with Black
+        run: black --check .
+        
+      - name: Run Pytest
+        run: pytest
+
+  docker:
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build Frontend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./docker/frontend/Dockerfile
+          push: false
+          tags: infantinoorg/frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          
+      - name: Build Backend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          file: ./docker/backend/Dockerfile
+          push: false
+          tags: infantinoorg/backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

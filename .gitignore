@@ -1,0 +1,31 @@
+# Git Ignore
+.env
+.env.local
+.env.*.local
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+coverage/
+
+# Internal Project Planning & Agent Work
+docs/0*.md
+docs/1*.md
+agents/
+scripts/
+frontend/design-system/
+
+# Test Outputs & Artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/a11y-violations.json
+
+# SQLite Database
+backend/infantinoorg.db
+
+# Additional Cache & Build
+.ruff_cache/
