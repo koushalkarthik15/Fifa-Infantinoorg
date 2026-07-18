@@ -20,8 +20,8 @@ class ApiClient {
   private baseUrl: string
 
   constructor(baseUrl?: string) {
-    // If not provided, fallback to the environment or an empty string for relative paths
-    this.baseUrl = baseUrl ?? env.NEXT_PUBLIC_API_URL ?? ""
+    // Always use relative paths to route through Next.js proxy
+    this.baseUrl = baseUrl ?? ""
   }
 
   /**
