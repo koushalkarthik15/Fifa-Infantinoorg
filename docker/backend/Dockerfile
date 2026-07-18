@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install uv
 
 # Copy requirements and install
-COPY pyproject.toml requirements.txt ./
-RUN uv pip install --system -r requirements.txt
+COPY pyproject.toml ./
+RUN uv pip install --system .
 
 # Final production stage
 FROM python:3.12-slim
