@@ -1,9 +1,36 @@
 # Git Ignore
+
+# ==========================================
+# Secrets & Credentials — NEVER COMMIT
+# ==========================================
+# Environment files (root and all subdirectories)
 .env
 .env.local
 .env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Firebase / GCP service account JSON files
+*-firebase-adminsdk-*.json
+*-service-account*.json
+serviceAccountKey.json
+
+# Private keys, certificates, and secrets
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ==========================================
+# Node / Frontend
+# ==========================================
 node_modules/
 .next/
+
+# ==========================================
+# Python / Backend
+# ==========================================
 __pycache__/
 *.pyc
 .venv/
@@ -12,20 +39,33 @@ venv/
 .coverage
 coverage/
 
+# ==========================================
 # Internal Project Planning & Agent Work
+# ==========================================
 docs/0*.md
 docs/1*.md
 agents/
 scripts/
 frontend/design-system/
 
+# ==========================================
 # Test Outputs & Artifacts
+# ==========================================
 frontend/test-results/
 frontend/playwright-report/
 frontend/a11y-violations.json
 
-# SQLite Database
+# ==========================================
+# Database
+# ==========================================
+# SQLite database files (never commit local DB)
 backend/infantinoorg.db
+*.db
+*.sqlite
+*.sqlite3
 
-# Additional Cache & Build
+# ==========================================
+# Build & Cache
+# ==========================================
 .ruff_cache/
+tsconfig.tsbuildinfo

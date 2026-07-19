@@ -52,5 +52,54 @@ npm run dev
 
 Visit `http://localhost:3000` to view the platform. Visit `http://localhost:8000/docs` to view the Swagger API documentation.
 
+## Security Configuration
+
+### Environment Variables
+
+All secrets and credentials are injected exclusively via environment variables. No credentials are hardcoded in source code.
+
+Copy `.env.example` to `.env` and populate with your credentials:
+
+```bash
+cp .env.example .env
+# Then edit .env with your actual API keys
+```
+
+**Required variables for full functionality:**
+
+| Variable | Description | Where to obtain |
+|---|---|---|
+| `GEMINI_API_KEY` | Google Gemini AI key | [Google AI Studio](https://aistudio.google.com/app/apikey) |
+| `GOOGLE_MAPS_API_KEY` | Google Maps Platform key | [GCP Console](https://console.cloud.google.com/google/maps-apis) |
+| `FIREBASE_PROJECT_ID` | Firebase project identifier | [Firebase Console](https://console.firebase.google.com) |
+| `CORS_ORIGINS` | Allowed frontend origins (JSON array) | Set to your frontend URL |
+| `DATABASE_URL` | Database connection string | SQLite for local, Neon for production |
+
+### CORS Configuration
+
+`CORS_ORIGINS` **must be explicitly set**. The application defaults to an empty list (denies all cross-origin requests) if not configured.
+
+```bash
+# Local development
+CORS_ORIGINS=["http://localhost:3000"]
+
+# Production
+CORS_ORIGINS=["https://infantino.org","https://www.infantino.org"]
+```
+
+### Production Secret Injection (CI/CD)
+
+**GitHub Actions:** Add secrets in `Settings → Secrets and variables → Actions`. Reference as `${{ secrets.GEMINI_API_KEY }}`.
+
+**Vercel:** Add secrets in `Project → Settings → Environment Variables`.
+
+### Security Rules
+
+- ❌ Never commit `.env` files containing real credentials
+- ❌ Never commit Firebase Admin SDK service account JSON files
+- ❌ Never hardcode API keys in source code
+- ✅ Rotate any keys that were previously exposed
+- ✅ Use feature flags (`ENABLE_GEMINI`, `ENABLE_MAPS`, `ENABLE_FIREBASE`) to disable services when keys are not available
+
 ## Documentation
 For deep-dives into the architecture, design decisions, and engineering quality reports (Lighthouse, E2E), see the official [Documentation Index](docs/04_Documentation_Index.md).

@@ -16,8 +16,10 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "sqlite:///./infantinoorg.db"
 
-    # CORS
-    CORS_ORIGINS: List[str] = ["*"]
+    # CORS — Empty by default (safe). Must be explicitly configured via
+    # CORS_ORIGINS environment variable in all environments.
+    # Example: CORS_ORIGINS=["https://infantino.org","http://localhost:3000"]
+    CORS_ORIGINS: List[str] = []
 
     # External Services Flags
     ENABLE_GEMINI: bool = False
