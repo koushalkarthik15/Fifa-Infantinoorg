@@ -6,7 +6,6 @@ import {
   HeartHandshake,
   Leaf,
   User,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react"
 
