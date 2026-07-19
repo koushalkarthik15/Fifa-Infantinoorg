@@ -12,7 +12,7 @@ export default function VolunteerAIPage() {
         <ContentWrapper size="lg">
           <PageHeader 
             title="Volunteer AI Command"
-            description="Intelligent incident categorization and dynamic volunteer assignment to ensure rapid response across the venue."
+            description="Intelligent incident categorization and dynamic volunteer assignment to ensure rapid response across FIFA World Cup 2026 venues."
             icon={HeartHandshake}
             iconClassName="bg-night-800 text-night-200"
             badge={<Badge variant="gold">On Duty</Badge>}

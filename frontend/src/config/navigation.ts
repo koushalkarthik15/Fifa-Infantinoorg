@@ -24,7 +24,7 @@ export const navigationConfig: NavigationItem[] = [
     label: "Home",
     href: "/",
     icon: Home,
-    enabled: true, // we have a placeholder home page
+    enabled: true,
     mobileVisible: true,
   },
   {
@@ -62,14 +62,7 @@ export const navigationConfig: NavigationItem[] = [
     enabled: true,
     mobileVisible: false,
   },
-  {
-    label: "AI Companion",
-    href: "/ai-companion", // Assuming we will have an AI companion page later, but for now it's enabled
-    icon: Sparkles,
-    enabled: true,
-    mobileVisible: true,
-    isAI: true,
-  },
+
   {
     label: "Profile",
     href: "/profile",

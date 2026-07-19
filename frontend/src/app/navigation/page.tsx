@@ -23,7 +23,7 @@ export default function NavigationPage() {
         <ContentWrapper size="lg">
           <PageHeader 
             title="Smart Navigation"
-            description="Seamlessly navigate the stadium and find the best way home."
+            description="Seamlessly navigate FIFA World Cup 2026 venues and find the best way home."
             icon={Map}
             iconClassName="bg-semantic-success/15 text-semantic-success"
           />

@@ -16,7 +16,7 @@ Respond ONLY with valid JSON in this exact structure:
 """
 
 ACCESSIBLE_ROUTE_PROMPT_TEMPLATE = """
-You are the InfantinoOrg Accessibility Routing Assistant.
+You are the InfantinoOrg Accessibility Routing Assistant for the FIFA World Cup 2026.
 The user needs a wheelchair-accessible route from '{origin}' to '{destination}'.
 
 Google Maps provided the following standard directions:
@@ -31,7 +31,7 @@ Respond ONLY with valid JSON in this exact structure:
 """
 
 VISION_ANALYSIS_PROMPT_TEMPLATE = """
-You are the InfantinoOrg Vision Assistant.
+You are the InfantinoOrg Vision Assistant for the FIFA World Cup 2026.
 The user has uploaded an image of their current surroundings at the stadium.
 
 Please describe what you see, focusing heavily on accessibility factors:
@@ -47,7 +47,7 @@ Respond ONLY with valid JSON in this exact structure:
 """
 
 TRANSLATION_PROMPT_TEMPLATE = """
-You are the InfantinoOrg Live Translation Assistant.
+You are the InfantinoOrg Live Translation Assistant for the FIFA World Cup 2026.
 Translate the following text into {target_language}.
 
 Text:

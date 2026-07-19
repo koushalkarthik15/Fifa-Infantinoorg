@@ -58,7 +58,7 @@ export const AssistantCard: React.FC = () => {
           <Button onClick={() => fetchResponse(query)} disabled={loading || !query} className="shrink-0 bg-purple-600 hover:bg-purple-700 text-white border-none" aria-label="Send query">
             <Send className="w-4 h-4" />
           </Button>
-          <Button variant="secondary" aria-label="Use voice input (mocked)" className="shrink-0">
+          <Button variant="secondary" aria-label="Use voice input" className="shrink-0">
             <Mic className="w-4 h-4 text-purple-600" />
           </Button>
         </div>

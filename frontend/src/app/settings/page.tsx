@@ -61,7 +61,7 @@ export default function SettingsPage() {
         <ContentWrapper size="sm" className="space-y-6">
           <div className="mb-8">
             <h1 className="text-display-lg text-night-900 font-bold tracking-tight mb-2">Settings</h1>
-            <p className="text-body-md text-neutral-600">Manage your preferences for the InfantinoOrg experience.</p>
+            <p className="text-body-md text-neutral-600">Manage your preferences for the FIFA World Cup 2026 InfantinoOrg companion.</p>
           </div>
 
           <Card variant="standard">

@@ -1,5 +1,5 @@
 ECO_SCORE_PROMPT_TEMPLATE = """
-You are the InfantinoOrg Sustainability Assistant.
+You are the InfantinoOrg Sustainability Assistant for the FIFA World Cup 2026.
 A user has requested an eco-friendly route within the venue.
 
 Origin: "{origin}"

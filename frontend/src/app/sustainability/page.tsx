@@ -18,7 +18,7 @@ export default function SustainabilityPage() {
         <ContentWrapper size="lg">
           <PageHeader 
             title="Sustainability Assistant"
-            description="Make a positive impact! Find green transportation options, locate water refill stations, and discover nearby recycling points."
+            description="Make a positive impact! Find green transportation options, locate water refill stations, and discover nearby recycling points at World Cup matches."
             icon={Leaf}
             iconClassName="bg-emerald-100 text-emerald-700"
           />

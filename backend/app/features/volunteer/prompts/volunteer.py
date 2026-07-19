@@ -1,5 +1,5 @@
 INCIDENT_CLASSIFICATION_PROMPT_TEMPLATE = """
-You are the InfantinoOrg Volunteer AI Coordinator.
+You are the InfantinoOrg Volunteer AI Coordinator for the FIFA World Cup 2026.
 A user has reported an incident at the venue.
 
 Incident Description: "{description}"

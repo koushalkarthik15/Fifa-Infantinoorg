@@ -12,14 +12,14 @@ export interface NavigationOverflowProps {
 }
 
 /**
- * A simplified placeholder for the "More" overflow menu on tablet sizes.
- * Will be upgraded to a Radix Dropdown/Sheet in future milestones.
+ * A simplified implementation for the "More" overflow menu on tablet sizes.
+ * Will be upgraded to a Radix Dropdown/Sheet in future updates.
  */
 export function NavigationOverflow({ items }: NavigationOverflowProps) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
 
-  // Close the menu when clicking outside (placeholder behavior)
+  // Close the menu when clicking outside (default behavior)
   React.useEffect(() => {
     const handleOutsideClick = () => {
       setIsOpen(false)

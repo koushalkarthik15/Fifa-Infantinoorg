@@ -19,7 +19,7 @@ export default function AccessibilityPage() {
         <ContentWrapper size="lg">
           <PageHeader 
             title="Accessibility & Assistance"
-            description="Inclusive venue navigation, multilingual translation, and ambient AI assistance."
+            description="Inclusive navigation for World Cup venues, multilingual translation, and ambient AI assistance."
             icon={Accessibility}
             iconClassName="bg-purple-100 text-purple-700"
           />
